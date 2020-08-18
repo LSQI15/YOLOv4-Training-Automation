@@ -1,3 +1,4 @@
+  
 echo -n "Enter your dataset's absolute path (folder containing images', labels' folders and configuration file): " 
 read folder_path
 configfile=$folder_path/train_config.json
@@ -20,7 +21,7 @@ if [ -f $configfile ]; then
 		web_ui_port=`jq .training.web_ui.port $configfile`
 		ports="$ports -p $web_ui_port:$web_ui_port"
 	fi
-	sudo docker run --rm  --runtime=nvidia -it -e TRAIN_NAME=$container_name -e TRAIN_START_TIME="$(date '+%Y%m%d_%H:%M:%S')" $ports  -v $folder_path:/training/assets -v $(pwd)/trainings:/training/custom_training -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro --name $container_name darknet_yolov4_gpu:1 ; 
+	docker run --rm  --runtime=nvidia -it -e TRAIN_NAME=$container_name -e TRAIN_START_TIME="$(date '+%Y%m%d_%H:%M:%S')" $ports  -v $folder_path:/training/assets -v $(pwd)/trainings:/training/custom_training -v /etc/timezone:/etc/timezone:ro -v /etc/localtime:/etc/localtime:ro --name $container_name -p 10.80.221.80:6060:6060 -p 10.80.221.80:8090:8090 -p 10.80.221.80:8099:8099 darknet_yolov4_gpu:1 ; 
 else	
 	echo "Error: Configuration file not found in the provided path"
 fi
