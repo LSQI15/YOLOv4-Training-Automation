@@ -48,7 +48,7 @@
         },
         "tensorboard": {
             "enable": true,
-            "port": 6006
+            "port": 6060
         },
         "web_ui": {
             "enable": true,
