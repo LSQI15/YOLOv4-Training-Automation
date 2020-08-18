@@ -126,20 +126,42 @@ You have 3 ways of monitoring the training.
 
 ### Custom API
 
-One REST API with its Swagger API is also started during the training so you can get the YOLO output log in a structured JSON format as well as test custom images on the latest saved weights.  This can be accessed through port 8000 (or a custom port you can set inside training/custom_api/port)
+One REST API with its Swagger API is also started during the training so you can get the YOLO output log in a structured JSON format as well as test custom images on the latest saved weights.  This can be accessed through port 8099 (or a custom port you can set inside training/custom_api/port)
+
+If you train your model in a remote server, to access the API, enter
+
+```
+ssh -NfL 8099:localhost:8099 [YOUR_ACCOUNT]@[YOUR_SERVER_IP_ADDRESS]
+open http://[YOUR_SERVER_IP_ADDRESS]:8099
+```
+
 
 ![GIF](./gifs/2.gif)
 
 ### TensorboardX
 
 
-The loss and mAP can be visualized through Tensorboard which can be accessed on port 6006 (or a custom port you can set inside training/tensorboard/port)
+The loss and mAP can be visualized through Tensorboard which can be accessed on port 6060 (or a custom port you can set inside training/tensorboard/port)
 
 ![](tensorboard.png)
+
+If you train your model in a remote server, to access TensorboardX, enter
+
+```
+ssh -NfL 6060:localhost:6060 [YOUR_ACCOUNT]@[YOUR_SERVER_IP_ADDRESS]
+open http://[YOUR_SERVER_IP_ADDRESS]:6060
+```
 
 ### AlexeyAB provided web_ui
 
 This can be enabled by setting training/web_ui/enable to true in the `train_config.json` you provide during the training.  It can later on be access through port 8090 (or a custom port you can set inside training/web_ui/port) and looks like the following:
+
+If you train your model in a remote server, to access web_ui, enter
+
+```
+ssh -NfL 8090:localhost:8090 [YOUR_ACCOUNT]@[YOUR_SERVER_IP_ADDRESS]
+open http://[YOUR_SERVER_IP_ADDRESS]:8090
+```
 
 ![Training monitoring - web_ui](https://camo.githubusercontent.com/d60dfdba6c007a5df888747c2c03664c91c12c1e/68747470733a2f2f6873746f2e6f72672f776562742f79642f766c2f61672f7964766c616775746f66327a636e6a6f64737467726f656e3861632e6a706567)
 
